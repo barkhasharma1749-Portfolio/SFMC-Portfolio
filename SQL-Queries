@@ -1,1 +1,179 @@
+# SQL Queries
 
+## Overview
+
+SQL Query Activities in Salesforce Marketing Cloud are used to segment audiences, filter customer data, create target audiences, and automate marketing campaigns.
+
+## Skills Covered
+
+* Data Segmentation
+* Data Filtering
+* INNER JOIN
+* LEFT JOIN
+* Aggregate Functions
+* Date Functions
+* Customer Targeting
+* Automation Studio Query Activities
+
+---
+
+## Project 1: Active Customers
+
+### Objective
+
+Retrieve active customers for email campaigns.
+
+### SQL Query
+
+```sql
+SELECT
+    SubscriberKey,
+    EmailAddress,
+    FirstName
+FROM Customers
+WHERE Status = 'Active'
+```
+
+### Outcome
+
+Created a target audience of active customers.
+
+---
+
+## Project 2: Customer Orders Using INNER JOIN
+
+### Objective
+
+Combine customer and order data.
+
+### SQL Query
+
+```sql
+SELECT
+    c.CustomerID,
+    c.FirstName,
+    c.EmailAddress,
+    o.OrderID,
+    o.OrderDate
+FROM Customers c
+INNER JOIN Orders o
+ON c.CustomerID = o.CustomerID
+```
+
+### Outcome
+
+Retrieved customers with purchase history.
+
+---
+
+## Project 3: Customers Without Orders
+
+### Objective
+
+Identify customers who have never placed an order.
+
+### SQL Query
+
+```sql
+SELECT
+    c.CustomerID,
+    c.FirstName,
+    c.EmailAddress
+FROM Customers c
+LEFT JOIN Orders o
+ON c.CustomerID = o.CustomerID
+WHERE o.CustomerID IS NULL
+```
+
+### Outcome
+
+Created audience for re-engagement campaigns.
+
+---
+
+## Project 4: Last 30 Days Purchases
+
+### Objective
+
+Find customers who purchased in the last 30 days.
+
+### SQL Query
+
+```sql
+SELECT
+    CustomerID,
+    EmailAddress,
+    OrderDate
+FROM Orders
+WHERE OrderDate >= DATEADD(day,-30,GETDATE())
+```
+
+### Outcome
+
+Created audience for upsell campaigns.
+
+---
+
+## Project 5: Top Customers
+
+### Objective
+
+Identify high-value customers.
+
+### SQL Query
+
+```sql
+SELECT
+    CustomerID,
+    COUNT(OrderID) AS TotalOrders
+FROM Orders
+GROUP BY CustomerID
+HAVING COUNT(OrderID) >= 5
+```
+
+### Outcome
+
+Created VIP customer segment.
+
+---
+
+## Common SQL Concepts Used in SFMC
+
+### INNER JOIN
+
+Returns matching records from both tables.
+
+### LEFT JOIN
+
+Returns all records from the left table and matching records from the right table.
+
+### WHERE
+
+Filters records based on conditions.
+
+### GROUP BY
+
+Groups records for calculations.
+
+### HAVING
+
+Filters grouped results.
+
+### DATEADD
+
+Used for date-based segmentation.
+
+---
+
+## Tools Used
+
+* Salesforce Marketing Cloud
+* Automation Studio
+* Query Activities
+* Data Extensions
+
+---
+
+## Outcome
+
+Built audience segments, automated customer targeting, and improved campaign personalization using SQL Query Activities in Salesforce Marketing Cloud.
