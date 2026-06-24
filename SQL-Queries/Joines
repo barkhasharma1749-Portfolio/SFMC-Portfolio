@@ -1,0 +1,29 @@
+What is INNER JOIN?
+INNER JOIN दो tables के केवल matching records return करता है।>
+
+Example
+Customers Table
+CustomerID	Name
+1	John
+2	Sarah
+3	Mike
+Orders Table
+OrderID	CustomerID
+101	1
+102	2
+
+
+Query
+SELECT
+c.CustomerID,
+c.Name,
+o.OrderID
+FROM Customers c
+INNER JOIN Orders o
+ON c.CustomerID = o.CustomerID
+Result
+Result
+CustomerID	Name	OrderID
+1	       John	     101
+2	Sarah	102
+Mike नहीं आएगा क्योंकि उसका कोई order नहीं है।
