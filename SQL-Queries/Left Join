@@ -1,0 +1,17 @@
+What is LEFT JOIN?
+LEFT JOIN left table के सभी records return करता है, चाहे matching record right table में हो या नहीं।
+
+Query
+SELECT
+c.CustomerID,
+c.Name,
+o.OrderID
+FROM Customers c
+LEFT JOIN Orders o
+ON c.CustomerID = o.CustomerID
+
+Result
+CustomerID	Name	OrderID
+1	          John	 101
+2	          Sarah	 102
+3	          Mike	 NULL
